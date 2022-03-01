@@ -8,6 +8,7 @@ const AppRouter = () => {
     <BrowserRouter>
       <Routes>
         <Route exact path="/characters/:name" element={<PageB />}/>
+        {/* <Route exact path="/characters/:id" element={<PageB />}/> */}
         <Route exact path="/" element={<PageA />}/>
         <Route path="*" element={<PageC />}/>
       </Routes>

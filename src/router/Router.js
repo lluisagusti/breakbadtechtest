@@ -1,16 +1,15 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import PageA from '../pages/PageA'
-import PageB from '../pages/PageB'
-import PageC from '../pages/PageC'
+import Home from '../pages/Home'
+import Character from '../pages/Character'
+import NotFound from '../pages/NotFound'
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/characters/:name" element={<PageB />}/>
-        {/* <Route exact path="/characters/:id" element={<PageB />}/> */}
-        <Route exact path="/" element={<PageA />}/>
-        <Route path="*" element={<PageC />}/>
+        <Route exact path="/characters/:name" element={<Character />}/>
+        <Route exact path="/" element={<Home />}/>
+        <Route path="*" element={<NotFound />}/>
       </Routes>
     </BrowserRouter>
   );

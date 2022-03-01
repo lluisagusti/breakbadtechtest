@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { getCharacterDataByName, getCharacterQuote } from "../service/service";
 import { Grid, Card, CardActionArea, CardMedia, makeStyles } from "@material-ui/core";
 import Header from "../components/Header";
@@ -18,29 +19,30 @@ card: {
   }
 });
 
-const PageB = () => {
+const Character = () => {
   // state
   const [characterData, setCharacterData] = useState({});
   const [characterQuote, setCharacterQuote] = useState("");
 
   // hooks
   const classes = useStyles();
+  const { name } = useParams();
 
   useEffect(() => {
-    getData();
-    getQuote();
-  }, []);
+    getData(name);
+    getQuote(name);
+  }, [name]);
 
   // get character full data by name
-  const getData = async () => {
-    const res = await getCharacterDataByName("Walter+White");
+  const getData = async (name) => {
+    const res = await getCharacterDataByName(name);
     setCharacterData(res.data[0]);
   };
 
   // get quote
-  const getQuote = async () => {
-    const res = await getCharacterQuote("Walter+White");
-    setCharacterQuote(res.data[0].quote);
+  const getQuote = async (name) => {
+    const res = await getCharacterQuote(name);
+    setCharacterQuote(res.data[0] && res.data[0].quote || "-");
   };
 
   const {
@@ -51,7 +53,7 @@ const PageB = () => {
     portrayed,
     img,
     nickname,
-    name,
+    // name,
     birthday,
     occupation,
     better_call_saul_appearance,
@@ -84,7 +86,7 @@ const PageB = () => {
 
       <Grid container item xs={12} sm={6}>
         <div>
-          <h5>Name: {name}</h5>
+          {/* <h5>Name: {name}</h5> */}
           <h5>Nickname: {nickname}</h5>
           <h5>Portrayed: {portrayed}</h5>
           <h5>Id: {char_id}</h5>
@@ -102,6 +104,9 @@ const PageB = () => {
         <div>
           <h5>Quote: {characterQuote}</h5>
         </div>
+        {characterQuote.length > 3 ? (<div>
+          <button onClick={() => getQuote(name)}>Get New Quote</button>
+        </div>) : null}
       </Grid>
       </Grid>
 
@@ -111,4 +116,4 @@ const PageB = () => {
   );
 };
 
-export default PageB;
+export default Character;

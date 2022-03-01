@@ -3,7 +3,7 @@ import Home from '../pages/Home'
 import Character from '../pages/Character'
 import NotFound from '../pages/NotFound'
 
-const AppRouter = () => {
+const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -15,4 +15,4 @@ const AppRouter = () => {
   );
 };
 
-export default AppRouter;
+export default Router;

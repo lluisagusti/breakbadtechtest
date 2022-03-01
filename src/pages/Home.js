@@ -6,13 +6,13 @@ import { Grid, makeStyles } from "@material-ui/core";
 import Header from "../components/Header";
 import { plusSignQuery } from "../utils/utils";
 import Loading from "../components/Loading";
+import Error from "../components/Error";
 
 const useStyles = makeStyles({
   grid: {
     paddingTop: '4em'
   }
 });
-
 
 const Home = () => {
   // state
@@ -24,6 +24,7 @@ const Home = () => {
   const navigate = useNavigate();
   const classes = useStyles();
 
+  // very similar to component did mount
   useEffect(() => {
     setLoading(true);
     getData();
@@ -31,10 +32,16 @@ const Home = () => {
 
   // get characters
   const getData = async () => {
+    // const paginated = await getPaginatedCharacters(10, 100);
+    // console.log('paginated', paginated)
+
     const res = await getAllCharacters();
-    if (res.status === 429) setError("You'll be able to access again after 24 hours")
-    setData(res.data);
-    setLoading(false);
+    if (res.status === 429) {
+      setError("You'll be able to access this API again within 24 hours")
+    } else {
+      setData(res.data);
+      setLoading(false);
+    }
   };
 
   // go to character
@@ -47,11 +54,11 @@ const Home = () => {
     <>
       <Header />
       <Grid container className={classes.grid}>
-        <Grid item xs={false} sm={false} md={2} pt={8}/>
-        <Grid item container xs={12} sm={12} md={8} spacing={4} pt={8}>
+        <Grid item xs={false} sm={false} md={2}/>
+        <Grid item container xs={12} sm={12} md={8} spacing={4}>
           {loading ? (<Loading />) : (data.map((item, index) => {
             return (
-              <Grid item key={index} xs={6} sm={4} md={4} lg={3} xl={2} pt={8}>
+              <Grid item key={index} xs={6} sm={4} md={4} lg={3} xl={2}>
                 <CharacterCard
                   character={item}
                   goToCharacterPage={handleGoToCharacterPage}
@@ -59,8 +66,9 @@ const Home = () => {
               </Grid>
             );
           }))}
+          {error ? <Error errorMessage={error}/> : null}
         </Grid>
-        <Grid item xs={false} sm={2} pt={6}/>
+        <Grid item xs={false} sm={false} md={2}/>
       </Grid>
     </>
   );

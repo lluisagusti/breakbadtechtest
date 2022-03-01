@@ -1,0 +1,26 @@
+{
+    "header": {
+        "technical_test": "Prueba Técnica @ atSistemas"
+    },
+
+    "char": {
+        "name": "Nombre",
+        "nickname": "Apodo",
+        "portrayed": "Interpretado por",
+        "id": "Id",
+        "category": "Categoria",
+        "birthday": "Nacimiento",
+        "occupation": "Profesión",
+        "status": "Estado",
+        "appearance": "Apariciones Breaking Bad",
+        "better_call_saul_appearance": "Apariciones Better Call Saul",
+        "quote": "Cita",
+        "no_quote_to_show": "El personaje no tiene ninguna cita para mostrar.",
+        "Alive": "Vivo",
+        "Deceased": "Fallecido",
+        "Unknown": "Desconocido",
+        "Presumed dead": "Supuestamente Muerto",
+        "go_to_root": "Volver",
+        "get_new_quote": "Obtener Cita"
+    }
+}

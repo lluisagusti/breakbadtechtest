@@ -2,7 +2,6 @@ import {
     Typography,
     CardMedia,
     CardContent,
-    CardActions,
     CardActionArea,
     Card,
     makeStyles,
@@ -24,7 +23,7 @@ import {
     character,
     goToCharacterPage
   }) => {
-    const { img, name, nickname, char_id } = character;
+    const { img, name, nickname } = character;
     const classes = useStyles();
   
     // if (img.includes("Tumblr_lqddc79K9S1qc5omm")) console.log('img --> ', img)
@@ -37,7 +36,7 @@ import {
             alt={nickname || "-"}
             height="300px"
             width="100px"
-            image={img || "bblogo.png"}
+            image={img || "walter-white-sm.png"}
             title={nickname || "-"}
           />
           <CardContent>

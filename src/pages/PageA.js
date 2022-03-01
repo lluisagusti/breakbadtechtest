@@ -1,44 +1,61 @@
-import { useEffect } from "react";
-import {
-  getAllCharacters,
-  getCharacterDataById,
-  getCharacterDataByName,
-  getCharacterQuote,
-} from "../service/service";
+import { useEffect, useState } from "react";
+import { getAllCharacters } from "../service/service";
+import CharacterCard from "../components/CharacterCard";
+import { useNavigate } from "react-router-dom";
+import { Grid, makeStyles } from "@material-ui/core";
+import Header from "../components/Header";
+
+const useStyles = makeStyles({
+  grid: {
+    paddingTop: '4em'
+  }
+});
+
 
 const PageA = () => {
+  // state
+  const [data, setData] = useState([]);
+
+  // hooks
+  const navigate = useNavigate();
+  const classes = useStyles();
+
   useEffect(() => {
     getData();
   }, []);
 
+  // get characters
   const getData = async () => {
-    console.log("GETTING DATA...");
-    // get characters
-    const responseA = await getAllCharacters();
-    console.log("responseA", responseA);
+    const res = await getAllCharacters();
+    setData(res.data);
+  };
 
-    // get character full data by name
-    const responseB = await getCharacterDataByName("Walter+White");
-    console.log("responseB", responseB);
-
-    // get character full data by id
-    const responseB2 = await getCharacterDataById(1);
-    console.log("responseB2", responseB2);
-
-    // get quote
-    const responseC = await getCharacterQuote("Walter+White");
-    console.log("responseC", responseC);
+  // go to character
+  const handleGoToCharacterPage = (character) => {
+    const { name } = character;
+    navigate(`/characters/${name.replace(/\s+/g, "+")}`);
   };
 
   return (
-    <div>
-      <h1>Page A</h1>
-      <h1>Page A</h1>
-      <h1>Page A</h1>
-      <h1>Page A</h1>
-      <h1>Page A</h1>
-      <h1>Page A</h1>
-    </div>
+    <>
+      <Header />
+      <Grid container className={classes.grid}>
+        <Grid item xs={false} sm={false} md={2} pt={8}/>
+        <Grid item container xs={12} sm={12} md={8} spacing={4} pt={8}>
+          {data.map((item, index) => {
+            return (
+              <Grid item key={index} xs={6} sm={4} md={4} lg={3} xl={2} pt={8}>
+                <CharacterCard
+                  character={item}
+                  goToCharacterPage={handleGoToCharacterPage}
+                />
+              </Grid>
+            );
+          })}
+        </Grid>
+        <Grid item xs={false} sm={2} pt={6}/>
+      </Grid>
+    </>
   );
 };
 

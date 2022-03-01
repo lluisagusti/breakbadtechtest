@@ -4,6 +4,7 @@ import {
     Toolbar,
     Typography
   } from "@material-ui/core";
+  import { useNavigate } from "react-router-dom";
   
   const useStyles = makeStyles({
     title: {
@@ -20,12 +21,21 @@ import {
   });
   
   const Header = () => {
+    // hooks
     const classes = useStyles();
+    const navigate = useNavigate();
+
+    // return home
+    const handleGoRoot = () => {
+      console.log('NAVIGATE')
+      navigate("/")
+    }
   
     return (
       <AppBar className={classes.bar}>
           <Toolbar>
-            <img className={classes.image} src={"bblogo-sm.png"} alt="logo"/>
+            <div onClick={() => handleGoRoot}>
+            <img className={classes.image} src={'bblogo-sm.png'} alt="logo" /></div>
             <Typography variant="h6" className={classes.title}>
             </Typography>
             <Typography>Prueba Técnica @ atSistemas</Typography>

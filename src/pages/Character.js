@@ -10,6 +10,9 @@ import {
 } from "@material-ui/core";
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import CharacterInfo from "../components/CharacterInfo";
+import Loading from "../components/Loading";
 
 const useStyles = makeStyles({
   root: {
@@ -22,7 +25,7 @@ const useStyles = makeStyles({
     justifyContent: "space-around",
   },
   grid: {
-    paddingTop: "4em",
+    paddingTop: "7em",
   },
 });
 
@@ -36,6 +39,7 @@ const Character = () => {
   const classes = useStyles();
   const { name } = useParams();
   const navigate = useNavigate();
+  const [t, i18n] = useTranslation("global");
 
   useEffect(() => {
     setLoading(true);
@@ -62,79 +66,56 @@ const Character = () => {
     navigate("/");
   };
 
-  const {
-    appearance,
-    category,
-    char_id,
-    status,
-    portrayed,
-    img,
-    nickname,
-    // name,
-    birthday,
-    occupation,
-    better_call_saul_appearance,
-  } = characterData;
+  const { img, nickname } = characterData;
 
   return (
     <>
       <Header />
       <Grid container className={classes.grid}>
-
-
         <Grid item xs={false} sm={false} md={2} />
-
-        {!loading ? <Grid item container xs={12} sm={12} md={8} spacing={4}>
-          <Grid container item xs={12} sm={6}>
-            <div>
-              <Card className={classes.card}>
-                <CardActionArea>
-                  <CardMedia
-                    component="img"
-                    alt={nickname || "-"}
-                    height="auto"
-                    image={img || "walter-white-sm.png"}
-                    title={nickname || "-"}
-                  />
-                </CardActionArea>
-              </Card>
-            </div>
-          </Grid>
-
-          <Grid container item xs={12} sm={6}>
-            <div>
-              <h5>Name: {name}</h5>
-              <h5>Nickname: {nickname}</h5>
-              <h5>Portrayed: {portrayed}</h5>
-              <h5>Id: {char_id}</h5>
-              <h5>Category: {category}</h5>
-              <h5>Birthday: {birthday}</h5>
-              <h5>Occupation: {occupation}</h5>
-              <h5>Status: {status}</h5>
-              <h5>Appearance: {appearance}</h5>
-              <h5>
-                Better Call Saul Appearance: {better_call_saul_appearance}
-              </h5>
-            </div>
-          </Grid>
-
-          <Grid container item xs={12}>
-            <div>
-              <h5>Quote: {characterQuote}</h5>
-            </div>
-            {characterQuote.length > 3 ? (
+        {!loading ? (
+          <Grid item container xs={12} sm={12} md={8} spacing={4}>
+            <Grid container item xs={12} sm={6}>
               <div>
-                <button onClick={() => getQuote(name)}>Get New Quote</button>
+                <Card className={classes.card}>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      alt={nickname || "-"}
+                      height="auto"
+                      image={img || "walter-white-sm.png"}
+                      title={nickname || "-"}
+                    />
+                  </CardActionArea>
+                </Card>
               </div>
-            ) : null}
+            </Grid>
+            <Grid container item xs={12} sm={6}>
+              <div>
+                <CharacterInfo characterData={characterData} />
+              </div>
+            </Grid>
+            <Grid container item xs={12}>
+              <div>
+                <h5>
+                  {t("char.quote")}: {characterQuote}
+                </h5>
+              </div>
+              {characterQuote.length > 3 ? (
+                <div>
+                  <button onClick={() => getQuote(name)}>
+                    {t("char.get_new_quote")}
+                  </button>
+                </div>
+              ) : null}
+            </Grid>
+            <Grid item xs={12}>
+              <div>
+                <button onClick={handleGoRoot}>{t("char.go_to_root")}</button>
+              </div>
+            </Grid>
           </Grid>
-
-          <Grid item xs={12}>
-            <div>
-              <button onClick={handleGoRoot}>Go To Root</button>
-            </div>
-          </Grid>
-        </Grid> : null}
+        ) : <Loading />}
       </Grid>
     </>
   );

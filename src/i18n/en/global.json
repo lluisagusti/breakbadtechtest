@@ -1,0 +1,26 @@
+{
+    "header": {
+        "technical_test": "Technical Test @ atSistemas"
+    },
+
+    "char": {
+        "name": "Name",
+        "nickname": "Nickname",
+        "portrayed": "Portrayed by",
+        "id": "Id",
+        "category": "Category",
+        "birthday": "Birthday",
+        "occupation": "Occupation",
+        "status": "Status",
+        "appearance": "Appearance Breaking Bad",
+        "better_call_saul_appearance": "Appearance Better Call Saul",
+        "quote": "Quote",
+        "no_quote_to_show": "The current character doesn't have any quote.",
+        "Alive": "Alive",
+        "Deceased": "Deceased",
+        "Unknown": "Unknown",
+        "Presumed dead": "Presumed Dead",
+        "go_to_root": "Go back",
+        "get_new_quote": "Get Quote"
+    }
+}

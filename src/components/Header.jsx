@@ -41,7 +41,7 @@ const Header = () => {
     navigate("/");
   };
 
-  // nothin
+  // nothing
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -70,7 +70,7 @@ const Header = () => {
         <Typography>{t("header.technical_test")}</Typography>
         <div>
           <IconButton
-            size="large"
+            size="small"
             aria-label="account of current user"
             aria-controls="menu-appbar"
             aria-haspopup="true"

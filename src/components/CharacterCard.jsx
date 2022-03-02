@@ -6,6 +6,7 @@ import {
     Card,
     makeStyles,
   } from "@material-ui/core";
+  import {hollyImage} from "../utils/utils"
   
   const useStyles = makeStyles({
     root: {
@@ -36,7 +37,7 @@ import {
             alt={nickname || "-"}
             height="300px"
             width="100px"
-            image={img || "walter-white-sm.png"}
+            image={hollyImage(img) || "walter-white-sm.png"}
             title={nickname || "-"}
           />
           <CardContent>

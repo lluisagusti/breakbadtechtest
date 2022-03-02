@@ -13,22 +13,23 @@ const CharacterInfo = ({ characterData }) => {
 
     // props destructuring
     const {
-        appearance,
-        category,
-        char_id,
-        status,
-        portrayed,
-        nickname,
-        name,
-        birthday,
-        occupation,
+      name,
+      nickname,
+      char_id,
+      category,
+      status,
+      portrayed,
+      birthday,
+      occupation,
+      appearance,
         better_call_saul_appearance,
       } = characterData;
 
     // hooks
-    const [t, i18n] = useTranslation("global");
+    const [t] = useTranslation("global");
 
   return (
+    <div>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableBody>
@@ -64,9 +65,18 @@ const CharacterInfo = ({ characterData }) => {
               <TableCell align="left">{t("char.status")}</TableCell>
               <TableCell align="right">{status}</TableCell>
             </TableRow>
+            <TableRow>
+                <TableCell align="left">{t("char.appearance")}</TableCell>
+                <TableCell align="right">{arrayString(appearance)}</TableCell>
+              </TableRow>
+              {better_call_saul_appearance && better_call_saul_appearance.length > 0 && (<TableRow>
+                <TableCell align="left">{t("char.better_call_saul_appearance")}</TableCell>
+                <TableCell align="right">{arrayString(better_call_saul_appearance)}</TableCell>
+              </TableRow>)}
         </TableBody>
       </Table>
     </TableContainer>
+    </div>
   );
 };
 

@@ -22,6 +22,7 @@
         "Presumed dead": "Supuestamente Muerto",
         "go_to_root": "Volver",
         "get_new_quote": "Obtener Cita",
-        "errormessage": "No existe ningún personaje con el nombre"
+        "errormessage": "No existe ningún personaje con el nombre",
+        "please_return_message": "Por favor, vuelva al inicio para continuar disfrutando."
     }
 }

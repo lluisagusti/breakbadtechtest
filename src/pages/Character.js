@@ -8,7 +8,6 @@ import LoadingCharacter from "../components/LoadingCharacter";
 import CharacterImage from "../components/CharacterImage";
 import CharacterQuote from "../components/CharacterQuote";
 import GoRootButton from "../components/GoToRootButton";
-import { useTranslation } from "react-i18next";
 import Error from "../components/Error";
 import { spacesInsteadPlusSign } from '../utils/utils'
 
@@ -28,7 +27,6 @@ const Character = () => {
   // hooks
   const classes = useStyles();
   const { name } = useParams();
-  const [t] = useTranslation("global");
 
   // component did mount alike
   useEffect(() => {
@@ -44,7 +42,7 @@ const Character = () => {
       setCharacterData(res.data[0]);
       setLoading(false)
     } else {
-      setError(`${t("char.errormessage")} "${spacesInsteadPlusSign(name)}".`)
+      setError(`"${spacesInsteadPlusSign(name)}".`)
     }
   };
 

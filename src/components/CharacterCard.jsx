@@ -6,8 +6,9 @@ import {
     Card,
     makeStyles,
   } from "@material-ui/core";
-  import {hollyImage} from "../utils/utils"
+  import { hollyImage } from "../utils/utils"
   
+  // styles
   const useStyles = makeStyles({
     root: {
       maxWidth: 345,
@@ -24,11 +25,13 @@ import {
     character,
     goToCharacterPage
   }) => {
-    const { img, name, nickname } = character;
+
+    // hook
     const classes = useStyles();
-  
-    // if (img.includes("Tumblr_lqddc79K9S1qc5omm")) console.log('img --> ', img)
-  
+    
+    // destructuring required
+    const { img, name, nickname } = character;
+
     return (
       <Card className={classes.card} onClick={() => goToCharacterPage({name})}>
         <CardActionArea>

@@ -1,19 +1,18 @@
 import { Grid, Typography, makeStyles } from "@material-ui/core";
 import GoRootButton from "./GoToRootButton";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles({
-  mainSpacing: {
+  errorSpacing: {
     paddingTop: "3em"
-  },
-  textSpacing: {
-    paddingTop: "3em",
-  },
+  }
 });
 
 const Error = ({ errorMessage }) => {
 
   // hooks
   const classes = useStyles();
+  const [t] = useTranslation("global");
 
   return (
     <>
@@ -21,14 +20,14 @@ const Error = ({ errorMessage }) => {
         <Typography align="center" variant="h5" component="div">
           Error!
         </Typography>
-        <Typography className={classes.mainSpacing} align="center" variant="h6" component="div">
-          {errorMessage}
+        <Typography className={classes.errorSpacing} align="center" variant="h6" component="div">
+        {`${t("char.errormessage")} ${errorMessage}`}
         </Typography>
-        <Typography className={classes.textSpacing}  align="center" variant="body2">
-          Please, reuturn home to continue enjoying.
+        <Typography className={classes.errorSpacing}  align="center" variant="body2">
+        {t("char.please_return_message")}
         </Typography>
       </Grid>
-      <Grid className={classes.textSpacing} alignContent="center" container item xs={12} direction="column">
+      <Grid className={classes.errorSpacing} alignContent="center" container item xs={12} direction="column">
         <GoRootButton />
       </Grid>
     </>

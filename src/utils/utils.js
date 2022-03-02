@@ -2,6 +2,10 @@ export function plusSignQuery(string) {
   return string.replace(/\s+/g, "+");
 }
 
+export function spacesInsteadPlusSign(string) {
+  return string.replace(/\+/g,' ')
+}
+
 export function arrayString(array) {
   if (array && array.length > 1) return array.join(", ");
   return array;

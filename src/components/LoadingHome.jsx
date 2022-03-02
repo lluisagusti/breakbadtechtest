@@ -1,6 +1,6 @@
 import { CircularProgress, Grid } from "@material-ui/core";
 
-const Loading = () => {
+const LoadingHome = () => {
 
   const localImg = `walter-white-sm.png`;
   const remoteImg = `https://breakingbadapi.com/static/media/breaking_bad.6d275852.jpg`;
@@ -17,4 +17,4 @@ const Loading = () => {
   );
 };
 
-export default Loading;
+export default LoadingHome;

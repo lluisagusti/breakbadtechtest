@@ -21,6 +21,8 @@
         "Unknown": "Unknown",
         "Presumed dead": "Presumed Dead",
         "go_to_root": "Go back",
-        "get_new_quote": "Get Quote"
+        "get_new_quote": "Get Quote",
+        "errormessage": "There is no character with the name",
+        "please_return_message": "Please, reuturn home to continue enjoying."
     }
 }

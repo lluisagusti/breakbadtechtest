@@ -5,22 +5,40 @@ import {
   TableRow,
   TableCell,
   Paper,
+  Button,
+  makeStyles
 } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 
+const useStyles = makeStyles({
+  fixed_size_button: {
+    maxWidth: "10em",
+    maxHeight: "2.6em",
+    minWidth: "10em",
+    minHeight: "2.6em",
+  }
+});
+
+
 const CharacterQuote = ({ characterQuote, getQuote, characterName }) => {
+  
   // hooks
   const [t] = useTranslation("global");
+  const classes = useStyles();
 
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table>
         <TableBody>
           <TableRow>
             <TableCell align="left">
-              <button onClick={() => getQuote(characterName)}>
+              <Button
+                variant="contained"
+                onClick={() => getQuote(characterName)}
+               className={classes.fixed_size_button}
+              >
                 {t("char.get_new_quote")}
-              </button>
+              </Button>
             </TableCell>
             <TableCell align="right">{characterQuote}</TableCell>
           </TableRow>

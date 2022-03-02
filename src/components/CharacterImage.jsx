@@ -15,9 +15,12 @@ const useStyles = makeStyles({
   }
 });
 
-const CharacerImage = ({ img, nickname }) => {
+const CharacerImage = ({ characterData }) => {
   // hooks
   const classes = useStyles();
+
+  // destructuring what we need
+  const { img, nickname } = characterData;
 
   return (
     <Grid container item xs={12} sm={6}>

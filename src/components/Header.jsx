@@ -7,24 +7,20 @@ import {
   Avatar,
   IconButton,
   Menu,
-  MenuItem
+  MenuItem,
 } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
-import { flagUrl, logoUrl } from '../utils/utils'
+import { flagUrl, logoUrl } from "../utils/utils";
 
 const useStyles = makeStyles({
   title: {
+    paddingRight: "2em",
     flexGrow: 1,
   },
   bar: {
     backgroundColor: "#000",
-    // backgroundColor: "#036e2f"
-  },
-  image: {
-    width: "70px",
-    height: "50px",
   },
 });
 
@@ -41,42 +37,35 @@ const Header = () => {
     navigate("/");
   };
 
-  // nothing
+  // captures language selection
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
+  // close menu
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  const handleChangeLanguage = lang => {
+  // change language
+  // save selected language @ localstorage
+  const handleChangeLanguage = (lang) => {
+    i18n.changeLanguage(lang);
     localStorage.setItem("BreakingBadLanguage", lang);
-    i18n.changeLanguage(lang)
     handleClose();
-  }
+  };
 
   return (
     <AppBar className={classes.bar}>
       <Toolbar>
         <ListItemAvatar>
-          <Avatar
-            alt="logo"
-            src={logoUrl}
-            onClick={handleGoRoot}
-          />
+          <Avatar alt="logo" src={logoUrl} onClick={handleGoRoot} />
         </ListItemAvatar>
-        <Typography variant="h6" className={classes.title}></Typography>
-        <Typography>{t("header.technical_test")}</Typography>
+        <Typography className={classes.title}>
+          {t("header.technical_test")}
+        </Typography>
         <div>
-          <IconButton
-            size="small"
-            aria-label="account of current user"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            onClick={handleMenu}
-            color="inherit"
-          >
+          <IconButton size="small" onClick={handleMenu} color="inherit">
             <img src={flagUrl} alt="language" height="25px" />
           </IconButton>
           <Menu
@@ -94,8 +83,12 @@ const Header = () => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={() => handleChangeLanguage("es")}>Español</MenuItem>
-            <MenuItem onClick={() => handleChangeLanguage("en")}>English</MenuItem>
+            <MenuItem onClick={() => handleChangeLanguage("es")}>
+              Español
+            </MenuItem>
+            <MenuItem onClick={() => handleChangeLanguage("en")}>
+              English
+            </MenuItem>
           </Menu>
         </div>
       </Toolbar>

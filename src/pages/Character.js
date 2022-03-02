@@ -4,7 +4,6 @@ import { getCharacterDataByName, getCharacterQuote } from "../service/service";
 import { Grid, makeStyles } from "@material-ui/core";
 import Header from "../components/Header";
 import CharacterInfo from "../components/CharacterInfo";
-import Loading from "../components/Loading";
 import CharacterImage from "../components/CharacterImage";
 import CharacterQuote from "../components/CharacterQuote";
 import GoRootButton from "../components/GoToRootButton";
@@ -56,28 +55,26 @@ const Character = () => {
       <Header />
       <Grid container className={classes.grid}>
         <Grid item xs={false} sm={false} md={2} />
-        {/* {loading ? (
-          <Loading />
-        ) : ( */}
-        <Grid item container xs={12} sm={12} md={8} spacing={4}>
-          <CharacterImage img={img} nickname={nickname} />
-          <Grid container item xs={12} sm={6}>
-            <CharacterInfo characterData={characterData} />
-          </Grid>
-          {characterQuote && (
-            <Grid container item xs={12}>
-              <CharacterQuote
-                characterName={characterData.name}
-                characterQuote={characterQuote}
-                getQuote={getQuote}
-              />
+        {!loading ? (
+          <Grid item container xs={12} sm={12} md={8} spacing={4}>
+            <CharacterImage img={img} nickname={nickname} />
+            <Grid container item xs={12} sm={6}>
+              <CharacterInfo characterData={characterData} />
             </Grid>
-          )}
-          <Grid item xs={12}>
-            <GoRootButton />
+            {characterQuote && (
+              <Grid container item xs={12}>
+                <CharacterQuote
+                  characterName={characterData.name}
+                  characterQuote={characterQuote}
+                  getQuote={getQuote}
+                />
+              </Grid>
+            )}
+            <Grid item xs={12}>
+              <GoRootButton />
+            </Grid>
           </Grid>
-        </Grid>
-        {/* )} */}
+        ) : null}
       </Grid>
     </>
   );

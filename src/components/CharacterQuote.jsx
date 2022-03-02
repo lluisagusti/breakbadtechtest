@@ -5,28 +5,40 @@ import {
   TableRow,
   TableCell,
   Paper,
+  Button
 } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
+
 
 const CharacterQuote = ({ characterQuote, getQuote, characterName }) => {
   // hooks
   const [t] = useTranslation("global");
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableBody>
-          <TableRow>
-            <TableCell align="left">
-              <button onClick={() => getQuote(characterName)}>
-                {t("char.get_new_quote")}
-              </button>
-            </TableCell>
-            <TableCell align="right">{characterQuote}</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableBody>
+            <TableRow>
+              <TableCell align="left"  colSpan={1}>
+                <Button
+                  variant="contained"
+                  component="span"
+                  size="medium"
+                  onClick={() => getQuote(characterName)}
+                  height="50px"
+                  width="100px"
+                  style={{maxWidth: '10em', maxHeight: '3em', minWidth: '10em', minHeight: '3em'}}
+                >
+                  {t("char.get_new_quote")}
+                </Button>
+              </TableCell>
+              <TableCell align="right" colSpan={2}>{characterQuote}</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 };
 

@@ -13,9 +13,6 @@ import Error from "../components/Error";
 import { spacesInsteadPlusSign } from '../utils/utils'
 
 const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-  },
   grid: {
     paddingTop: "7em",
   },
@@ -63,14 +60,12 @@ const Character = () => {
       <Header />
       {!loading ? (<Grid container className={classes.grid}>
         <Grid item xs={false} sm={false} md={2} />
-
         {(characterData && !error) ? (
           <Grid item container xs={12} sm={12} md={8} spacing={4}>
             <CharacterImage characterData={characterData} />
             <Grid container item xs={12} sm={6}>
               <CharacterInfo characterData={characterData} />
             </Grid>
-
             {characterQuote && (
               <Grid container item xs={12}>
                 <CharacterQuote
@@ -80,7 +75,6 @@ const Character = () => {
                 />
               </Grid>
             )}
-
             <Grid item xs={12}>
               <GoRootButton />
             </Grid>

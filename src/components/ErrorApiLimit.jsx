@@ -1,5 +1,4 @@
 import { Grid, Typography, makeStyles } from "@material-ui/core";
-import GoRootButton from "./GoToRootButton";
 import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles({
@@ -8,7 +7,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Error = ({ errorMessage }) => {
+const ErrorApiLimit = () => {
 
   // hooks
   const classes = useStyles();
@@ -21,17 +20,14 @@ const Error = ({ errorMessage }) => {
           Error!
         </Typography>
         <Typography className={classes.errorSpacing} align="center" variant="h6" component="div">
-        {`${t("errors.errormessage")} ${errorMessage}`}
+        {t("errors.api_limit_error")}
         </Typography>
         <Typography className={classes.errorSpacing} align="center" variant="body2">
-        {t("errors.please_return_message")}
+        {t("errors.sorry_message")}
         </Typography>
-      </Grid>
-      <Grid className={classes.errorSpacing} alignContent="center" container item xs={12} direction="column">
-        <GoRootButton />
       </Grid>
     </>
   );
 };
 
-export default Error;
+export default ErrorApiLimit;

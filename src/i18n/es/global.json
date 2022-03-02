@@ -21,8 +21,14 @@
         "Unknown": "Desconocido",
         "Presumed dead": "Supuestamente Muerto",
         "go_to_root": "Volver",
-        "get_new_quote": "Obtener Cita",
+        "get_new_quote": "Obtener Cita"
+    },
+
+    "errors": {
         "errormessage": "No existe ningún personaje con el nombre",
-        "please_return_message": "Por favor, vuelva al inicio para continuar disfrutando."
+        "please_return_message": "Por favor vuelva al inicio para continuar disfrutando.",
+        "page_not_found": "Página No Encontrada",
+        "api_limit_error": "Ha superado el límite de consultas a la API. En 24 horas podrá volver a acceder.",
+        "sorry_message": "Le pedimos sinceras disculpas por las molestias."
     }
 }

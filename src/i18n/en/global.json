@@ -21,8 +21,14 @@
         "Unknown": "Unknown",
         "Presumed dead": "Presumed Dead",
         "go_to_root": "Go back",
-        "get_new_quote": "Get Quote",
+        "get_new_quote": "Get Quote"
+    },
+
+    "errors": {
         "errormessage": "There is no character with the name",
-        "please_return_message": "Please, reuturn home to continue enjoying."
+        "please_return_message": "Please reuturn home to continue enjoying.",
+        "page_not_found": "Page Not Found",
+        "api_limit_error": "You'll be able to access this API again within 24 hours.",
+        "sorry_message": "We kindly apologize for any inconvencience it may cause to you."
     }
 }

@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getCharacterDataByName, getCharacterQuote } from "../service/service";
-import { Grid, makeStyles } from "@material-ui/core";
-import Header from "../components/Header";
+import { Grid } from "@material-ui/core";
 import CharacterInfo from "../components/CharacterInfo";
 import LoadingCharacter from "../components/LoadingCharacter";
 import CharacterImage from "../components/CharacterImage";
@@ -10,12 +9,6 @@ import CharacterQuote from "../components/CharacterQuote";
 import GoRootButton from "../components/GoToRootButton";
 import Error from "../components/Error";
 import { spacesInsteadPlusSign } from '../utils/utils'
-
-const useStyles = makeStyles({
-  grid: {
-    paddingTop: "7em",
-  },
-});
 
 const Character = () => {
   // state
@@ -25,7 +18,6 @@ const Character = () => {
   const [error, setError] = useState(null);
 
   // hooks
-  const classes = useStyles();
   const { name } = useParams();
 
   // component did mount alike
@@ -42,6 +34,7 @@ const Character = () => {
       setCharacterData(res.data[0]);
       setLoading(false)
     } else {
+      setLoading(false)
       setError(`"${spacesInsteadPlusSign(name)}".`)
     }
   };
@@ -55,11 +48,10 @@ const Character = () => {
 
   return (
     <>
-      <Header />
-      {!loading ? (<Grid container className={classes.grid}>
-        <Grid item xs={false} sm={false} md={2} />
+      {!loading ? (
+      <Grid container item xs={12}>
         {(characterData && !error) ? (
-          <Grid item container xs={12} sm={12} md={8} spacing={4}>
+          <Grid item container xs={12} spacing={2}>
             <CharacterImage characterData={characterData} />
             <Grid container item xs={12} sm={6}>
               <CharacterInfo characterData={characterData} />

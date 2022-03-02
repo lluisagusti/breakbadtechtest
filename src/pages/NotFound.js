@@ -1,6 +1,6 @@
 import { Grid, makeStyles, Typography } from "@material-ui/core";
-import GoRootButton from '../components/GoToRootButton'
-
+import GoRootButton from "../components/GoToRootButton";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles({
   mainSpacing: {
@@ -11,18 +11,23 @@ const useStyles = makeStyles({
   },
 });
 
-
 const NotFound = () => {
+  // hooks
+  const classes = useStyles();
+  const [t] = useTranslation("global")
 
-    // hooks
-    const classes = useStyles();
-
-    const remoteImg = `https://breakingbadapi.com/static/media/button.166e4f54.jpg`;
-
+  const remoteImg = `https://breakingbadapi.com/static/media/button.166e4f54.jpg`;
 
   return (
     <>
-       <Grid className={classes.mainSpacing} container item alignContent="center" xs={12} direction="column">
+      <Grid
+        className={classes.mainSpacing}
+        container
+        item
+        alignContent="center"
+        xs={12}
+        direction="column"
+      >
         <img
           src={remoteImg}
           alt="breaking-bad-logo"
@@ -30,13 +35,33 @@ const NotFound = () => {
           width={"250px"}
         />
         <Typography align="center" variant="h5" component="div">
-          Page Not Found
+        {t("errors.page_not_found")}
         </Typography>
       </Grid>
-      <Typography className={classes.textSpacing}  align="center" variant="body2">
-          Please, reuturn home to continue enjoying.
+      <Grid
+        className={classes.textSpacing}
+        alignContent="center"
+        container
+        item
+        xs={12}
+        direction="column"
+      >
+        <Typography
+          alignContent="center"
+          className={classes.textSpacing}
+          variant="h6"
+        >
+         {t("errors.please_return_message")}
         </Typography>
-      <Grid className={classes.textSpacing} alignContent="center" container item xs={12} direction="column">
+      </Grid>
+      <Grid
+        className={classes.textSpacing}
+        alignContent="center"
+        container
+        item
+        xs={12}
+        direction="column"
+      >
         <GoRootButton />
       </Grid>
     </>

@@ -2,27 +2,21 @@ import { useEffect, useState } from "react";
 import { getAllCharacters } from "../service/service";
 import CharacterCard from "../components/CharacterCard";
 import { useNavigate } from "react-router-dom";
-import { Grid, makeStyles } from "@material-ui/core";
-import Header from "../components/Header";
+import { Grid } from "@material-ui/core";
 import { plusSignQuery } from "../utils/utils";
 import LoadingHome from "../components/LoadingHome";
-import Error from "../components/Error";
-
-const useStyles = makeStyles({
-  grid: {
-    paddingTop: '4em'
-  }
-});
+import PageNotFound from "../pages/NotFound"
+import ErrorApiLimit from "../components/ErrorApiLimit";
 
 const Home = () => {
   // state
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
+  const [errorApiLimit, setErrorApiLimit] = useState(false);
 
   // hooks
   const navigate = useNavigate();
-  const classes = useStyles();
 
   // very similar to component did mount
   useEffect(() => {
@@ -32,14 +26,13 @@ const Home = () => {
 
   // get characters
   const getData = async () => {
-    // const paginated = await getPaginatedCharacters(10, 100);
-    // console.log('paginated', paginated)
-
     const res = await getAllCharacters();
     if (res.status === 429) {
-      setError("You'll be able to access this API again within 24 hours")
+      setLoading(false);
+      setErrorApiLimit(true);
     } else {
-      setData(res.data);
+      res.data.length > 0 && setData(res.data);
+      res.data.length === 0 && setError(true)
       setLoading(false);
     }
   };
@@ -52,10 +45,6 @@ const Home = () => {
 
   return (
     <>
-      <Header />
-      <Grid container className={classes.grid}>
-        <Grid item xs={false} sm={false} md={2}/>
-        <Grid item container xs={12} sm={12} md={8} spacing={4}>
           {loading ? (<LoadingHome />) : (data.map((item, index) => {
             return (
               <Grid item key={index} xs={6} sm={4} md={4} lg={3} xl={2}>
@@ -66,10 +55,8 @@ const Home = () => {
               </Grid>
             );
           }))}
-          {error ? <Error errorMessage={error}/> : null}
-        </Grid>
-        <Grid item xs={false} sm={false} md={2}/>
-      </Grid>
+          {error ? <PageNotFound /> : null}
+          {errorApiLimit ? <ErrorApiLimit /> : null}
     </>
   );
 };

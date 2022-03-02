@@ -9,7 +9,6 @@ import {
   Menu,
   MenuItem,
 } from "@material-ui/core";
-import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { flagUrl, logoUrl } from "../utils/utils";
@@ -32,13 +31,7 @@ const Header = () => {
 
   // hooks
   const classes = useStyles();
-  const navigate = useNavigate();
   const [t, i18n] = useTranslation("global");
-
-  // return home wp alike
-  const handleGoRoot = () => {
-    navigate("/");
-  };
 
   // captures manu selection
   const handleMenu = (event) => {
@@ -62,7 +55,7 @@ const Header = () => {
     <AppBar className={classes.bar}>
       <Toolbar>
         <ListItemAvatar>
-          <Avatar alt="logo" src={logoUrl} onClick={handleGoRoot} />
+          <Avatar alt="logo" src={logoUrl} />
         </ListItemAvatar>
         <Typography className={classes.title}>
           {t("header.technical_test")}

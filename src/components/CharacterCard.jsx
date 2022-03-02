@@ -9,12 +9,9 @@ import {
   import { hollyImage } from "../utils/utils"
   
   // styles
-  const useStyles = makeStyles({
-    root: {
-      maxWidth: 345,
-    },    
+  const useStyles = makeStyles({   
     card: {
-      margin: 2,
+      margin: 5,
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-around"
@@ -26,7 +23,7 @@ import {
     goToCharacterPage
   }) => {
 
-    // hook
+    // hooks
     const classes = useStyles();
     
     // destructuring required

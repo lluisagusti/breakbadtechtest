@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 import { card } from "../styles/styles";
 import { hollyImage } from "../utils/utils";
+import { cardHeight, cardWidth } from "../constants/constants";
 
 const useStyles = makeStyles({ card });
 
@@ -25,7 +26,8 @@ const CharacterCard = ({ character, goToCharacterPage }) => {
         <CardMedia
           component="img"
           alt={nickname || "-"}
-          height="auto"
+          height={cardHeight}
+          width={cardWidth}
           image={hollyImage(img) || "walter-white-sm.png"}
           title={nickname || "-"}
         />

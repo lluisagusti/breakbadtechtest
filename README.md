@@ -14,7 +14,7 @@ This technical test has been made using the free-to-use breaking bad api of Tim 
 
 
 
-### Installation
+## Installation
 
 ```bash
 git clone https://github.com/lluisagusti/breakbadtechtest
@@ -26,7 +26,7 @@ yarn start
 Now you can visit: [http://localhost:3000/](http://localhost:3000/)
 
 
-### To Do
+## To Do
 
 * [ ] testing with Jest 
 * [ ] atomized components 

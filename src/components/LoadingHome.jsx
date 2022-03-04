@@ -1,19 +1,16 @@
-import { CircularProgress, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
+import Spinner from "./Spinner";
+import { remoteHeisenberg, localHeisenberg } from '../constants/constants'
 
 const LoadingHome = () => {
-
-  const localImg = `walter-white-sm.png`;
-  const remoteImg = `https://breakingbadapi.com/static/media/breaking_bad.6d275852.jpg`;
   
   return (
-    <>
       <Grid container item alignContent="center" xs={12} direction="column">
-        <img src={localImg || remoteImg} alt="breaking-bad-logo" />
+        <img src={localHeisenberg || remoteHeisenberg} alt="breaking-bad-logo" />
         <div align="center">
-          <CircularProgress color="inherit" />
+        <Spinner />
         </div>
       </Grid>
-    </>
   );
 };
 

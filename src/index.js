@@ -7,7 +7,6 @@ import i18next from "i18next";
 import global_es from "./i18n/es/global.json"
 import global_en from "./i18n/en/global.json"
 
-
 const lastLanguageUsed = localStorage.getItem("BreakingBadLanguage");
 
 i18next.init({
@@ -28,7 +27,4 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

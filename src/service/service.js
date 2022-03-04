@@ -1,15 +1,15 @@
 import axios from "axios";
-
-const api = "https://breakingbadapi.com/api"
+import { apiUrl } from '../constants/constants'
+import { switchResponse } from '../logic/logic'
 
 export const getAllCharacters = async () => {
-  return await axios.get(`${api}/characters`);
+return switchResponse(await axios.get(`${apiUrl}/characters`))
 };
 
 export const getCharacterDataByName = async (name) => {
-  return await axios.get(`${api}/characters?name=${name}`);
+  return await axios.get(`${apiUrl}/characters?name=${name}`);
 };
 
 export const getCharacterQuote = async (name) => {
-  return await axios.get(`${api}/quote/random?author=${name}`);
+  return await axios.get(`${apiUrl}/quote/random?author=${name}`);
 };

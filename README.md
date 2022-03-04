@@ -24,6 +24,7 @@ yarn start
 ```
 
 Now you can visit: [http://localhost:3000/](http://localhost:3000/)
+By the other hand, you can visit the follwing url: [https://jolly-nobel-5df13f.netlify.app](https://jolly-nobel-5df13f.netlify.app)
 
 
 ## To Do

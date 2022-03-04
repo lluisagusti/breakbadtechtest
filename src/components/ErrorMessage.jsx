@@ -1,29 +1,35 @@
-import { Grid, Typography } from "@material-ui/core";
-  
-  const ErrorMessage = ({ prop }) => {
+import { Grid, Typography, makeStyles } from "@material-ui/core";
+import { textSpacing } from "../styles/styles";
+import { useTranslation } from "react-i18next";
+import ErrorTitle from "./ErrorTitle";
 
-    prop && console.log('prop @ ErrorMessage  >> ', prop)
-  
-    return (
-        <Grid
+const useStyles = makeStyles({ textSpacing });
+
+const ErrorMessage = ({ errorName, primaryMessage, secondaryMessage }) => {
+  // hooks
+  const classes = useStyles();
+  const [t] = useTranslation("global");
+
+  return (
+    <Grid container item direction="column">
+      <ErrorTitle />
+      <Typography
         className={classes.textSpacing}
         align="center"
-        container
-        item
-        xs={12}
-        direction="column"
-        >
-        <Typography
-          align="center"
-          variant="h6"
-        >
-          {t("errors.please_return_message")}
-        </Typography>
-        </Grid>
-    );
-  };
-  
-  export default ErrorMessage;
-  
-  
-  
+        variant="h6"
+        component="div"
+      >
+        {errorName ? `${t(`errors.${primaryMessage}`)} ${errorName}` : `${t(`errors.${primaryMessage}`)}`}
+      </Typography>
+      <Typography
+        className={classes.textSpacing}
+        align="center"
+        variant="body2"
+      >
+        {t(`errors.${secondaryMessage}`)}
+      </Typography>
+    </Grid>
+  );
+};
+
+export default ErrorMessage;

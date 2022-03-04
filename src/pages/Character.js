@@ -35,7 +35,7 @@ const Character = () => {
          </Grid>
        </Grid>
      ) : (
-       <Error errorMessage={`"${spacesInsteadPlusSign(name)}".`} />
+       <Error errorName={`"${spacesInsteadPlusSign(name)}".`} primaryMessage={"errormessage"} secondaryMessage={"please_return_message"} />
      )}
    </Grid>) : (<LoadingCharacter />)}
     </>

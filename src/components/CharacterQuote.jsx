@@ -23,7 +23,7 @@ const CharacterQuote = ({ characterName }) => {
   const [{ quote, loading }, handleRecallGetQuote ] = useQuote(characterName);
 
   const handleRecallGet = () => {
-    handleRecallGetQuote();
+    handleRecallGetQuote(characterName);
   }
 
   return (

@@ -4,7 +4,7 @@ import { Grid, Hidden } from "@material-ui/core";
 import { plusSignQuery } from "../utils/utils";
 import LoadingHome from "../components/LoadingHome";
 import PageNotFound from "../pages/NotFound";
-import ErrorApiLimit from "../components/ErrorApiLimit";
+import Error from "../components/Error";
 import useCharacters from "../hooks/useCharacters";
 import CharactersListElement from "../components/CharacterListElement";
 
@@ -45,7 +45,7 @@ const Home = () => {
         )})
       )}
       {error && error.includes("default") && <PageNotFound />}
-      {error && error.includes("429") && <ErrorApiLimit />}
+      {error && error.includes("429") && <Error primaryMessage={"api_limit_error"} secondaryMessage={"sorry_message"} />}
     </>
   );
 };

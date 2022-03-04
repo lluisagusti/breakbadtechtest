@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getCharacterDataByName } from "../service/service";
 
 const useCharacter = name => {
+  // states
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null); 

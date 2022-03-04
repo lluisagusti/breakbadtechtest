@@ -3,31 +3,20 @@ import {
   AppBar,
   Toolbar,
   Typography,
-  ListItemAvatar,
-  Avatar,
-  IconButton,
-  Menu,
-  MenuItem,
 } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
-import { flagUrl, logoUrl } from "../utils/utils";
+import HeaderLogo from "./HeaderLogo";
+import HeaderIconButton from "./HeaderIconButton";
+import HeaderMenu from "./HeaderMenu";
+import { title, bar } from '../styles/styles'
 
-const useStyles = makeStyles({
-  title: {
-    flexGrow: 1,
-  },
-  bar: {
-    backgroundColor: "#000",
-  },
-  image: {
-    width: "70px",
-    height: "50px",
-  },
-});
+const useStyles = makeStyles({title, bar});
+
+
 
 const Header = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [selection, setSelection] = useState(null);
 
   // hooks
   const classes = useStyles();
@@ -35,12 +24,12 @@ const Header = () => {
 
   // captures manu selection
   const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
+    setSelection(event.currentTarget);
   };
 
   // close menu
   const handleClose = () => {
-    setAnchorEl(null);
+    setSelection(null);
   };
 
   // change language
@@ -54,41 +43,16 @@ const Header = () => {
   return (
     <AppBar className={classes.bar}>
       <Toolbar>
-        <ListItemAvatar>
-          <Avatar alt="logo" src={logoUrl} />
-        </ListItemAvatar>
+        <HeaderLogo />
         <Typography className={classes.title}>
           {t("header.technical_test")}
         </Typography>
-        <IconButton
-          size="small"
-          aria-haspopup="true"
-          onClick={handleMenu}
-          color="inherit"
-        >
-          <img src={flagUrl} alt="language" height="25px" />
-        </IconButton>
-        <Menu
-          anchorEl={anchorEl}
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
-          keepMounted
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-        >
-          <MenuItem onClick={() => handleChangeLanguage("es")}>
-            Español
-          </MenuItem>
-          <MenuItem onClick={() => handleChangeLanguage("en")}>
-            English
-          </MenuItem>
-        </Menu>
+        <HeaderIconButton handleMenu={handleMenu} />
+        <HeaderMenu
+          handleChangeLanguage={handleChangeLanguage}
+          selection={selection}
+          handleClose={handleClose}
+        />
       </Toolbar>
     </AppBar>
   );

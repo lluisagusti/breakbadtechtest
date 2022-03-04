@@ -1,41 +1,17 @@
-import { useEffect, useState } from "react";
-import { getAllCharacters } from "../service/service";
 import CharacterCard from "../components/CharacterCard";
 import { useNavigate } from "react-router-dom";
-import { Grid } from "@material-ui/core";
+import { Grid, Hidden } from "@material-ui/core";
 import { plusSignQuery } from "../utils/utils";
 import LoadingHome from "../components/LoadingHome";
-import PageNotFound from "../pages/NotFound"
-import ErrorApiLimit from "../components/ErrorApiLimit";
+import PageNotFound from "../pages/NotFound";
+import Error from "../components/Error";
+import useCharacters from "../hooks/useCharacters";
+import CharactersListElement from "../components/CharacterListElement";
 
 const Home = () => {
-  // state
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [errorApiLimit, setErrorApiLimit] = useState(false);
-
   // hooks
+  const { data, loading, error } = useCharacters();
   const navigate = useNavigate();
-
-  // very similar to component did mount
-  useEffect(() => {
-    setLoading(true);
-    getData();
-  }, []);
-
-  // get characters
-  const getData = async () => {
-    const res = await getAllCharacters();
-    if (res.status === 429) {
-      setLoading(false);
-      setErrorApiLimit(true);
-    } else {
-      res.data.length > 0 && setData(res.data);
-      res.data.length === 0 && setError(true)
-      setLoading(false);
-    }
-  };
 
   // go to character
   const handleGoToCharacterPage = (character) => {
@@ -45,18 +21,31 @@ const Home = () => {
 
   return (
     <>
-          {loading ? (<LoadingHome />) : (data.map((item, index) => {
-            return (
-              <Grid item key={index} xs={6} sm={4} md={4} lg={3} xl={2}>
-                <CharacterCard
-                  character={item}
-                  goToCharacterPage={handleGoToCharacterPage}
-                />
-              </Grid>
-            );
-          }))}
-          {error ? <PageNotFound /> : null}
-          {errorApiLimit ? <ErrorApiLimit /> : null}
+      {loading && data.length === 0 ? (
+        <LoadingHome />
+      ) : (
+        data.map((item, index) => {
+          return (
+            <Hidden key={index}>
+              {/* view for xs screens   */}
+              <Hidden smUp>
+                <Grid container item>
+                  <CharactersListElement xs={12} character={item} goToCharacterPage={handleGoToCharacterPage}
+                  />
+                </Grid>
+              </Hidden>
+              {/* view for other screen sizes */}
+              <Hidden only={["xs"]}>
+                <Grid container item sm={4} md={4} lg={3} xl={2}>
+                  <CharacterCard character={item} goToCharacterPage={handleGoToCharacterPage}
+                  />
+                </Grid>
+              </Hidden>
+            </Hidden>
+        )})
+      )}
+      {error && error.includes("default") && <PageNotFound />}
+      {error && error.includes("429") && <Error primaryMessage={"api_limit_error"} secondaryMessage={"sorry_message"} />}
     </>
   );
 };

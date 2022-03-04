@@ -6,45 +6,51 @@ import {
   TableCell,
   Paper,
   Button,
-  makeStyles
+  makeStyles,
 } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
+import { fixed_size_button } from "../styles/styles";
+import Spinner from "./Spinner";
+import useQuote from "../hooks/useQuote";
 
-const useStyles = makeStyles({
-  fixed_size_button: {
-    maxWidth: "10em",
-    maxHeight: "2.6em",
-    minWidth: "10em",
-    minHeight: "2.6em",
-  }
-});
+const useStyles = makeStyles({ fixed_size_button });
 
+const CharacterQuote = ({ characterName }) => {
 
-const CharacterQuote = ({ characterQuote, getQuote, characterName }) => {
-  
   // hooks
   const [t] = useTranslation("global");
   const classes = useStyles();
+  const [{ quote, loading }, handleRecallGetQuote ] = useQuote(characterName);
+
+  const handleRecallGet = () => {
+    handleRecallGetQuote(characterName);
+  }
 
   return (
-    <TableContainer component={Paper}>
-      <Table>
-        <TableBody>
-          <TableRow>
-            <TableCell align="left">
-              <Button
-                variant="contained"
-                onClick={() => getQuote(characterName)}
-               className={classes.fixed_size_button}
-              >
-                {t("char.get_new_quote")}
-              </Button>
-            </TableCell>
-            <TableCell align="right">{characterQuote}</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+    {quote && quote.length > 0 && (<TableContainer component={Paper}>
+          <Table>
+         <TableBody>
+              <TableRow>
+                <TableCell align="left">
+                  <Button
+                    variant="contained"
+                    onClick={handleRecallGet}
+                    className={classes.fixed_size_button}
+                  >
+                    {t("char.get_new_quote")}
+                  </Button>
+                </TableCell>
+                {loading ? (
+                  <TableCell align="right"> <Spinner /></TableCell>
+                ) : (
+                  <TableCell align="right">{quote}</TableCell>
+                )}
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>)}
+        </>
   );
 };
 

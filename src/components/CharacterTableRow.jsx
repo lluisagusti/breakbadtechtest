@@ -11,7 +11,7 @@ const CharacterTableRow = ({ value, keyname, index }) => {
       {keyname !== "img" && (
         <TableRow key={index}>
           <TableCell align="left">
-            <strong>{t(`char.${keyname}`)}</strong>
+            <strong>{t(`char.${keyname}`)}:</strong>
           </TableCell>
           <TableCell align="right">{characterInfoArray(value) || "No"}</TableCell>
         </TableRow>

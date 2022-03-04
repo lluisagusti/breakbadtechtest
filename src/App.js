@@ -11,7 +11,6 @@ const App = () => {
         <Grid item md={2} />
         <Grid container item xs={12} sm={12} md={8}>
           <RouterRender />
-          {/* <Router /> */}
         </Grid>
       </Grid>
     </>

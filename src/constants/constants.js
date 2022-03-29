@@ -21,3 +21,5 @@ export const notFoundSize = "250px";
 export const remoteHeisenberg = `https://breakingbadapi.com/static/media/breaking_bad.6d275852.jpg`;
 
 export const localHeisenberg = `walter-white-sm.png`;
+
+export const apiKey = `1f54bd990f1cdfb230adb312546d765d`;

@@ -29,6 +29,8 @@ export function removeIdBtcAndImg(object) {
 }
 
 export function characterInfoArray(data) {
+  console.log('data 1', data)
   if (typeof data === "object") return data.join(", ")
+  console.log('data 2', data)
   return data
 }

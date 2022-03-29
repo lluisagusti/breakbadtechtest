@@ -5,11 +5,12 @@ import {
   Typography,
 } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HeaderLogo from "./HeaderLogo";
 import HeaderIconButton from "./HeaderIconButton";
 import HeaderMenu from "./HeaderMenu";
 import { title, bar } from '../styles/styles'
+import { getLists } from '../service/service'
 
 const useStyles = makeStyles({title, bar});
 
@@ -39,6 +40,32 @@ const Header = () => {
     localStorage.setItem("BreakingBadLanguage", lang);
     handleClose();
   };
+
+
+
+
+
+
+  useEffect(() => {
+    getDataFromLists();
+  }, []);
+
+  const getDataFromLists = async () => {
+    try {
+      const res = await getLists();
+      console.log("res >>>> ", res);
+      // setData(res);
+    } catch (error) {
+      // setError(error);
+    } finally {
+      // setLoading(false);
+    }
+  };
+
+
+
+
+
 
   return (
     <AppBar className={classes.bar}>

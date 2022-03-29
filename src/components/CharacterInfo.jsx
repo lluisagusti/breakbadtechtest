@@ -10,6 +10,8 @@ import CharacterTableRow from "./CharacterTableRow";
 
 const CharacterInfo = ({ characterData }) => {
 
+  console.log('characterData', characterData)
+
   return (
     <TableContainer component={Paper}>
       <Table>

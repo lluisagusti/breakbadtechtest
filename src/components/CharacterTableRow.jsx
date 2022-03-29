@@ -3,6 +3,9 @@ import { useTranslation } from "react-i18next";
 import { characterInfoArray } from "../utils/utils";
 
 const CharacterTableRow = ({ value, keyname, index }) => {
+  console.log('value', value)
+  console.log('keyname', keyname)
+  console.log('index', index)
   // hooks
   const [t] = useTranslation("global");
 
